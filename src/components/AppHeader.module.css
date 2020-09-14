@@ -1,0 +1,53 @@
+.item {
+  padding: 5px;
+  order: 1;
+  display: block;
+  width: auto;
+}
+
+.menuTeal {
+  color: #fff !important;
+  background-color: #009688 !important;
+  display: flex;
+  align-items: center;
+}
+
+.menuButton {
+  color: #fff !important;
+  background-color: #009688 !important;
+  padding: 0.75rem;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.sideBar {
+  height: 100%;
+  width: 20rem;
+  background-color: blanchedalmond;
+  position: fixed !important;
+  z-index: 1;
+  overflow: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  background: none;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.logo {
+  font-size: 20px;
+  padding: 7.5px 10px 7.5px 0;
+  display: flex;
+  justify-content: flex-start;
+  min-height: 140px;
+}
+
+.appBar {
+  padding: 0.75rem;
+}
