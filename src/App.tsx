@@ -1,22 +1,23 @@
 import React from "react";
 import "./App.css";
-import { AppHeader } from "./components/AppHeader";
-import { Timer } from "./components/Timer/Timer";
+import { Route, Switch } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Navbar } from "./components/Navbar";
+import { AccountLogin } from "./pages/AccountLogin";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { Topics } from "./pages/Topics";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <div className="App">
-      <div className="AppContainer">
-        <AppHeader />
-        <section>
-          <Timer />
-        </section>
-      </div>
-
-      <footer className="AppFooter">
-        @Copyright {new Date().getFullYear()}
-      </footer>
-    </div>
+    <AuthContextProvider>
+      <Navbar />
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/login" component={AccountLogin} />
+        <PrivateRoute path="/topics" component={Topics} />
+      </Switch>
+    </AuthContextProvider>
   );
 }
 

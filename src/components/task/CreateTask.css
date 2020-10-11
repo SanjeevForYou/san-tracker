@@ -1,0 +1,41 @@
+.create-task__container {
+  padding: 10px;
+  color: white;
+  text-align: center;
+  display: flex;
+  margin: 0;
+  width: 100%;
+  align-items: center;
+}
+
+.create-task__create-button {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.create-task__container > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+
+.create-task__container > div > label {
+  opacity: 0.3;
+  font-weight: bold;
+  position: absolute;
+  top: 22px;
+  left: 20px;
+}
+
+.create-task__container > div > input[type="text"] {
+  width: 100%;
+  padding: 20px 20px 20px 50px;
+  background: #eee;
+}
+
+@media screen and (max-width: 768px) {
+  .create-task__container {
+    flex-direction: column;
+  }
+}

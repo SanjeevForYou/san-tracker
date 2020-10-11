@@ -1,0 +1,44 @@
+.task__list {
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.task__list li {
+  display: inline-block;
+  width: 100%;
+  text-align: start;
+}
+
+.task-list__list {
+  margin: 0;
+  padding: 0;
+}
+
+.task-list__list li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+
+.task-list__list li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+.task-list__list li:hover {
+  background: #ddd;
+}
+
+.task-list__container {
+  padding: 5px;
+}
+
+.task-list__header {
+  padding: 10px 10px;
+}
