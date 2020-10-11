@@ -7,6 +7,7 @@ import { AccountLogin } from "./pages/AccountLogin";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { Topics } from "./pages/Topics";
 import { AuthContextProvider } from "./context/AuthContext";
+import Journal from "./pages/Journal";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/login" component={AccountLogin} />
         <PrivateRoute path="/topics" component={Topics} />
+        <PrivateRoute path="/journal" component={Journal} />
       </Switch>
     </AuthContextProvider>
   );

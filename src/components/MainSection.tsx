@@ -8,7 +8,7 @@ const topline: string = "Welcome to the Journel world !";
 const headline: string = "You can use this app any place any time.";
 const description: string =
   "This app can be downloaded in google play store and also in desktop. This can be used online/offline any time any place.";
-const buttonlabel: string = "Try it";
+const buttonlabel: string = "Start Your Journal";
 
 const MainSection = () => {
   return (

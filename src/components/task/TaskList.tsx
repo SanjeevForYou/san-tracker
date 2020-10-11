@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { baseUrl } from "../../common/constants";
 import { FetchWrapper } from "../../common/fetchWrapper";
 import {
-  ITaskState,
+  getTasksSelector,
   TaskContext,
   TASK_ON_TASK_FETCH_FAILURE,
   TASK_ON_TASK_FETCH_REQUEST,
@@ -12,12 +12,7 @@ import { Spinner } from "../Spinner";
 import CreateTask from "./CreateTask";
 import { ITask } from "./ITask";
 import "./TaskList.css";
-
-export const getTasksSelector = (state?: ITaskState): ITask[] => {
-  return state?.tasks
-    ? state?.tasks.allIds.map((id: string) => state.tasks.byId[id])
-    : [];
-};
+import { TaskService } from "./TaskService";
 
 export const TaskList: React.FC = () => {
   const { state, dispatch } = useContext(TaskContext);
@@ -26,7 +21,7 @@ export const TaskList: React.FC = () => {
   async function getTasks() {
     try {
       setisLoading(true);
-      const tasks = await FetchWrapper.get<ITask[]>(`${baseUrl}/api/task`);
+      const tasks = await TaskService.getTasks();
       setisLoading(false);
       dispatch!({
         type: TASK_ON_TASK_FETCH_SUCESS,
@@ -51,7 +46,7 @@ export const TaskList: React.FC = () => {
   async function createTask(tittle: string) {
     try {
       setisLoading(true);
-      await FetchWrapper.post<any, any>(`${baseUrl}/api/task`, { tittle });
+      await TaskService.createTask(tittle);
       await getTasks();
       setisLoading(false);
     } catch (error) {

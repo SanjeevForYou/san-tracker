@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
 import MainSection from "../components/MainSection";
-import { TaskList } from "../components/task/TaskList";
-import { AuthContextProvider } from "../context/AuthContext";
-import { TaskContextProvider } from "../context/TaskContext";
+import { AuthContext, AuthContextProvider } from "../context/AuthContext";
+
+const HomeSection: React.FC = () => {
+  const { authToken } = useContext(AuthContext);
+  return !authToken ? <MainSection /> : <Redirect to="/journal" />;
+};
 
 export const Home = () => {
   return (
     <>
       <AuthContextProvider>
-        <MainSection />
+        <HomeSection />
       </AuthContextProvider>
     </>
   );

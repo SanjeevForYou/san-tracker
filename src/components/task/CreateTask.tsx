@@ -5,6 +5,7 @@ import "./CreateTask.css";
 type ICreateTask = {
   onCreate: (tittle: string) => void;
 };
+
 const CreateTask: React.FC<ICreateTask> = (props) => {
   const [tittle, setTittle] = useState("");
 

@@ -8,7 +8,10 @@ type ISpinner = {
 
 export const Spinner: React.FC<ISpinner> = (props: ISpinner) => {
   return (
-    <div className="spinner__container">
+    <div
+      className="spinner__container"
+      style={{ height: props.children ? "100%" : "100vh" }}
+    >
       {props.children}
       {props.isLoading ? (
         <div className="spinner__overlay">

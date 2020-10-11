@@ -59,17 +59,29 @@ export const Navbar = () => {
             </div>
 
             <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
-              <li className="nav-item">
-                <Link to="/" className="nav-links">
-                  Home
-                </Link>
-              </li>
+              {!authToken ? (
+                <li className="nav-item">
+                  <Link to="/" className="nav-links">
+                    Home
+                  </Link>
+                </li>
+              ) : null}
 
-              <li className="nav-item">
-                <Link to="/topics" className="nav-links">
-                  Topics
-                </Link>
-              </li>
+              {authToken ? (
+                <li className="nav-item">
+                  <Link to="/topics" className="nav-links">
+                    Topics
+                  </Link>
+                </li>
+              ) : null}
+
+              {authToken ? (
+                <li className="nav-item">
+                  <Link to="/journal" className="nav-links">
+                    Journal
+                  </Link>
+                </li>
+              ) : null}
 
               <li className="nav-btn">
                 {button ? (

@@ -68,3 +68,9 @@ export const TaskContextProvider: React.FC = (props) => {
     </TaskContext.Provider>
   );
 };
+
+export const getTasksSelector = (state?: ITaskState): ITask[] => {
+  return state?.tasks
+    ? state?.tasks.allIds.map((id: string) => state.tasks.byId[id])
+    : [];
+};
