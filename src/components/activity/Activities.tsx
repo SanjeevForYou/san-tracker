@@ -2,16 +2,42 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   ActivityContext,
   ACTIVITY_ON_FETCH_SUCESS,
-  getActivitiesSelector,
+  getActivitiesByDateSelector,
 } from "../../context/ActivityContext";
 import { Spinner } from "../Spinner";
 import { ActivityService } from "./ActivityService";
 import { IActivity } from "./IActivity";
+import "./Activity.css";
 
 type IActivitiesProps = {
   taskType?: string;
   taskId: string;
 };
+
+type IActivitesByTittle = {
+  tittle: string;
+  activities: IActivity[];
+};
+
+const ActivitiesByTittle: React.FC<IActivitesByTittle> = (
+  props: IActivitesByTittle
+) => (
+  <div className="activities__activities-by-tittle">
+    <h4>{props.tittle}</h4>
+    <ul>
+      {props.activities.map((activity: IActivity) => {
+        return (
+          <li key={activity._id}>
+            <p>
+              <span>{new Date(activity.dateTime).toLocaleTimeString()}</span>,{" "}
+              {activity.description}
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+);
 
 const Activities: React.FC<IActivitiesProps> = (props: IActivitiesProps) => {
   const [isLoading, setisLoading] = useState(false);
@@ -35,20 +61,22 @@ const Activities: React.FC<IActivitiesProps> = (props: IActivitiesProps) => {
     getActivities();
   }, []);
 
+  const activitiesByDate = getActivitiesByDateSelector(state);
+  const getActivitiesByDate = (date: string): IActivity[] =>
+    activitiesByDate.get(date) || [];
+
   return (
     <Spinner isLoading={isLoading}>
       <div>
         <h2>{props.taskType}</h2>
         <ul>
-          {getActivitiesSelector(state).map((activity: IActivity) => {
+          {Array.from(activitiesByDate.keys()).map((key: string) => {
             return (
-              <li key={activity._id}>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>
-                    {new Date(activity.dateTime).toLocaleTimeString()}
-                  </span>
-                  , {activity.description}
-                </p>
+              <li key={key}>
+                <ActivitiesByTittle
+                  tittle={key}
+                  activities={getActivitiesByDate(key)}
+                />
               </li>
             );
           })}

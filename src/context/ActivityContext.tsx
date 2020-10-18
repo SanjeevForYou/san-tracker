@@ -77,8 +77,36 @@ export const ActivityContextProvider: React.FC = (props) => {
   );
 };
 
+const reverseArray = (arr: Array<any> = []) => {
+  var newArray = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    newArray.push(arr[i]);
+  }
+  return newArray;
+};
+
 export const getActivitiesSelector = (state?: IActivityState): IActivity[] => {
   return state?.activities
-    ? state?.activities.allIds.map((id: string) => state.activities.byId[id])
+    ? reverseArray(state?.activities.allIds).map(
+        (id: string) => state.activities.byId[id]
+      )
     : [];
+};
+
+export const getActivitiesByDateSelector = (
+  state?: IActivityState
+): Map<string, Array<IActivity>> => {
+  const dateActivitys = new Map<string, Array<IActivity>>();
+  if (state?.activities && state.activities.allIds.length > 0) {
+    getActivitiesSelector(state).map((activity: IActivity) => {
+      const date = new Date(activity.dateTime).toDateString();
+      let activities: IActivity[];
+      const groupActivities = dateActivitys.get(date) || [];
+      groupActivities.push(activity);
+      activities = groupActivities;
+      dateActivitys.set(date, activities);
+    });
+  }
+
+  return dateActivitys;
 };

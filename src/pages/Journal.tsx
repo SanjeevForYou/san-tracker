@@ -12,6 +12,7 @@ import {
   TASK_ON_TASK_FETCH_REQUEST,
   TASK_ON_TASK_FETCH_SUCESS,
 } from "../context/TaskContext";
+import "./Journal.css";
 
 type IStartJournalSection = {
   onStart?: () => void;
@@ -88,16 +89,16 @@ const JournalSection: React.FC = () => {
   if (tasks.length < 1) {
     return (
       <Spinner isLoading={isLoading}>
-        <StartJournalSection onStart={statJournal} />
+        {!isLoading ? <StartJournalSection onStart={statJournal} /> : null}
       </Spinner>
     );
   }
 
   return (
-    <>
+    <div className="journal__container">
       <CreateActivity taskId={tasks[0]._id} />
       <Activities taskId={tasks[0]._id} taskType="Journal" />
-    </>
+    </div>
   );
 };
 

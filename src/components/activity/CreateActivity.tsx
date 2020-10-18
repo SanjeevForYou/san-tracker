@@ -6,6 +6,7 @@ import {
 import { Button } from "../Button";
 import { Spinner } from "../Spinner";
 import { ActivityService } from "./ActivityService";
+import "./Activity.css";
 
 type ICreateActivity = {
   taskId: string;
@@ -51,6 +52,7 @@ const CreateActivity: React.FC<ICreateActivity> = (props: ICreateActivity) => {
         <div>
           <label htmlFor="article-description"></label>
           <textarea
+            className="create-article__text-area"
             onChange={onDescriptionChange}
             rows={5}
             cols={50}

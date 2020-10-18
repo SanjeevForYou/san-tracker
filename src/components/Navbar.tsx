@@ -61,7 +61,7 @@ export const Navbar = () => {
             <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
               {!authToken ? (
                 <li className="nav-item">
-                  <Link to="/" className="nav-links">
+                  <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                     Home
                   </Link>
                 </li>
@@ -69,7 +69,11 @@ export const Navbar = () => {
 
               {authToken ? (
                 <li className="nav-item">
-                  <Link to="/topics" className="nav-links">
+                  <Link
+                    to="/topics"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
                     Topics
                   </Link>
                 </li>
@@ -77,7 +81,11 @@ export const Navbar = () => {
 
               {authToken ? (
                 <li className="nav-item">
-                  <Link to="/journal" className="nav-links">
+                  <Link
+                    to="/journal"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
                     Journal
                   </Link>
                 </li>

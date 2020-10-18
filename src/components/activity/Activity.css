@@ -1,0 +1,10 @@
+.create-article__container {
+  margin: 0;
+  width: 100%;
+  padding: 0.25rem;
+}
+
+.activities__activities-by-tittle {
+  padding: 0.5rem;
+  width: 100%;
+}
