@@ -52,6 +52,7 @@ const CreateActivity: React.FC<ICreateActivity> = (props: ICreateActivity) => {
         <div>
           <label htmlFor="article-description"></label>
           <textarea
+            value={description}
             className="create-article__text-area"
             onChange={onDescriptionChange}
             rows={5}

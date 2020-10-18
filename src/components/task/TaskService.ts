@@ -7,6 +7,10 @@ export class TaskService {
     return await FetchWrapper.get<ITask[]>(`${baseUrl}/api/task`);
   }
 
+  public static async getTasksById(taskId: string) {
+    return await FetchWrapper.get<ITask>(`${baseUrl}/api/task/${taskId}`);
+  }
+
   public static async createTask(tittle: string) {
     return await FetchWrapper.post<any, any>(`${baseUrl}/api/task`, { tittle });
   }

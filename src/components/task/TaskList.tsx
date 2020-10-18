@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { baseUrl } from "../../common/constants";
-import { FetchWrapper } from "../../common/fetchWrapper";
+import { Link } from "react-router-dom";
 import {
   getTasksSelector,
   TaskContext,
@@ -65,7 +64,11 @@ export const TaskList: React.FC = () => {
         <CreateTask onCreate={onTaskCreate} />
         <ul className="task-list__list">
           {getTasksSelector(state).map((task: ITask) => {
-            return <li key={task._id}>{task.tittle}</li>;
+            return (
+              <li key={task._id}>
+                <Link to={`/topics/${task._id}`}>{task.tittle}</Link>
+              </li>
+            );
           })}
         </ul>
       </div>

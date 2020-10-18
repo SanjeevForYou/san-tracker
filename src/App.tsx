@@ -8,6 +8,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { Topics } from "./pages/Topics";
 import { AuthContextProvider } from "./context/AuthContext";
 import Journal from "./pages/Journal";
+import TopicDetail from "./pages/TopicDetail";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/login" component={AccountLogin} />
-        <PrivateRoute path="/topics" component={Topics} />
+        <PrivateRoute path="/topics" component={Topics} exact />
+        <PrivateRoute path="/topics/:taskId" component={TopicDetail} />
         <PrivateRoute path="/journal" component={Journal} />
       </Switch>
     </AuthContextProvider>

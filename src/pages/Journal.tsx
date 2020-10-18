@@ -3,6 +3,7 @@ import Activities from "../components/activity/Activities";
 import CreateActivity from "../components/activity/CreateActivity";
 import { Button } from "../components/Button";
 import { Spinner } from "../components/Spinner";
+import { ITask } from "../components/task/ITask";
 import { TaskService } from "../components/task/TaskService";
 import { ActivityContextProvider } from "../context/ActivityContext";
 import {
@@ -13,6 +14,8 @@ import {
   TASK_ON_TASK_FETCH_SUCESS,
 } from "../context/TaskContext";
 import "./Journal.css";
+
+const DEFAULT_JOURNAL_TITTLE = "My Journal";
 
 type IStartJournalSection = {
   onStart?: () => void;
@@ -82,11 +85,14 @@ const JournalSection: React.FC = () => {
   }
 
   const statJournal = () => {
-    createTask("Journal");
+    createTask(DEFAULT_JOURNAL_TITTLE);
   };
 
   const tasks = getTasksSelector(state);
-  if (tasks.length < 1) {
+  const myJournal = tasks.find(
+    (task: ITask) => task.tittle === DEFAULT_JOURNAL_TITTLE
+  );
+  if (tasks.length < 1 || !myJournal) {
     return (
       <Spinner isLoading={isLoading}>
         {!isLoading ? <StartJournalSection onStart={statJournal} /> : null}
@@ -96,8 +102,8 @@ const JournalSection: React.FC = () => {
 
   return (
     <div className="journal__container">
-      <CreateActivity taskId={tasks[0]._id} />
-      <Activities taskId={tasks[0]._id} taskType="Journal" />
+      <CreateActivity taskId={myJournal._id} />
+      <Activities taskId={myJournal._id} taskType={DEFAULT_JOURNAL_TITTLE} />
     </div>
   );
 };

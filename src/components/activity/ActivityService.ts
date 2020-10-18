@@ -1,6 +1,6 @@
 import { baseUrl } from "../../common/constants";
 import { FetchWrapper } from "../../common/fetchWrapper";
-import { IActivity } from "./IActivity";
+import { TaskService } from "../task/TaskService";
 
 export class ActivityService {
   public static async createActivity(taskId: string, description: string) {
@@ -10,7 +10,9 @@ export class ActivityService {
     });
   }
 
-  public static async getActivities() {
-    return await FetchWrapper.get<IActivity[]>(`${baseUrl}/api/activity`);
+  public static async getActivities(taskId: string) {
+    const task = await TaskService.getTasksById(taskId);
+    return task.activities;
+    // return await FetchWrapper.get<IActivity[]>(`${baseUrl}/api/activity`);
   }
 }

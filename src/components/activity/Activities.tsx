@@ -46,7 +46,7 @@ const Activities: React.FC<IActivitiesProps> = (props: IActivitiesProps) => {
   async function getActivities() {
     try {
       setisLoading(true);
-      const activities = await ActivityService.getActivities();
+      const activities = await ActivityService.getActivities(props.taskId);
       dispatch!({
         type: ACTIVITY_ON_FETCH_SUCESS,
         payload: activities,
