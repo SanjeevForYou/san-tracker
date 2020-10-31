@@ -78,7 +78,7 @@
 }
 
 .blue {
-  background-color: #276afb;
+  background-color: #0c0638;
   color: #fff;
   border: none;
 }
@@ -90,14 +90,14 @@
 }
 
 .primary {
-  background-color: #242424;
+  background-color: #0c0638;
   color: #fff;
   border: none;
 }
 
 .primary:hover {
   background-color: #fff;
-  color: #242424;
+  color: #0c0638;
   border: none;
 }
 
@@ -108,5 +108,5 @@
 }
 
 .green:hover {
-  background-color: #242424;
+  background-color: #0c0638;
 }

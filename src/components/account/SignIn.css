@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fafafa;
+  background: #c5bcbc;
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
 }
 
@@ -24,7 +24,7 @@ button {
 
 button:hover {
   background-color: #ccc;
-  color: black;
+  color: #0c0638;
 }
 
 button#signin {

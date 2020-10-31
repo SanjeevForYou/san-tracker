@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { baseUrl } from "../../common/constants";
 import { FetchWrapper } from "../../common/fetchWrapper";
 import { AuthContext } from "../../context/AuthContext";
+import { Button } from "../Button";
 import "./SignIn.css";
 
 type ISignInProps = {};
@@ -77,9 +78,14 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
         </div> */}
         </section>
 
-        <button onClick={onSignIn} id="signin">
+        <Button
+          onButtonClick={onSignIn}
+          buttonColor="primary"
+          buttonStyle="btn--primary"
+          buttonSize="btn--medium"
+        >
           Sign in
-        </button>
+        </Button>
       </form>
     </div>
   );
