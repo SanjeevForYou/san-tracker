@@ -2,6 +2,7 @@
   margin: 0;
   width: 100%;
   padding: 0.25rem;
+  max-width: 100%;
 }
 
 .activities__activities-by-tittle {

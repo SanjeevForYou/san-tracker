@@ -53,6 +53,10 @@ export class FetchWrapper {
 
     const response = await fetch(request);
     if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.setItem("token", "null");
+      }
+
       throw new Error(response.statusText);
     }
 
