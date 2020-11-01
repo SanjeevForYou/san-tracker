@@ -1,6 +1,5 @@
 .create-task__container {
   padding: 10px;
-  color: white;
   text-align: center;
   display: flex;
   margin: 0;
@@ -31,7 +30,6 @@
 .create-task__container > div > input[type="text"] {
   width: 100%;
   padding: 20px 20px 20px 50px;
-  background: #eee;
 }
 
 @media screen and (max-width: 768px) {

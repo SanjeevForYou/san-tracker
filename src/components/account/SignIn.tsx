@@ -4,6 +4,7 @@ import { baseUrl } from "../../common/constants";
 import { FetchWrapper } from "../../common/fetchWrapper";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "../Button";
+import { Spinner } from "../Spinner";
 import "./SignIn.css";
 
 type ISignInProps = {};
@@ -13,10 +14,14 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
 
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onSignIn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     async function signIn() {
       try {
+        setIsLoading(true);
+        setError(false);
         const url = `${baseUrl}/api/login`;
         const response = await FetchWrapper.post<any, { token: string }>(url, {
           email: userName,
@@ -25,7 +30,10 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
         console.log("Login successful!!", response);
         setAuthToken?.(response?.token);
       } catch (error) {
+        setError(true);
         console.log("Something went wrong!!", error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -41,6 +49,12 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
     <div className="signin__section">
       <form action="#">
         <h1>Sign in</h1>
+        {isLoading && <Spinner />}
+        {error && (
+          <div className="signin__section__error">
+            <span>Entered email/password is wrong.</span>
+          </div>
+        )}
         <section>
           <label htmlFor="email">Email</label>
           <input
