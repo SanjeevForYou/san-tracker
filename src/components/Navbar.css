@@ -1,5 +1,5 @@
 :root {
-  --background-color: #0c0638;
+  --background-color: var(--primary-color-main);
   --color: #fff;
   --hover-color: #f00946;
 }

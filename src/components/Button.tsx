@@ -35,10 +35,10 @@ export const Button: React.FC<IButtonProps> = ({
   onButtonClick,
 }: IButtonProps) => {
   const checkButtonStyle =
-    buttonStyle && STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
+    buttonStyle && STYLES.includes(buttonStyle) ? buttonStyle : null;
 
   const checkButtonSize =
-    buttonSize && SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+    buttonSize && SIZES.includes(buttonSize) ? buttonSize : null;
 
   const checkButtonColor =
     buttonColor && COLORS.includes(buttonColor) ? buttonColor : null;

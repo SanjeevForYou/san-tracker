@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { baseUrl } from "../../common/constants";
 import { FetchWrapper } from "../../common/fetchWrapper";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,28 +7,30 @@ import { Button } from "../Button";
 import { Spinner } from "../Spinner";
 import "./SignIn.css";
 
-type ISignInProps = {};
+type ISignUpProps = {};
 
-export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
+export const SignUp: React.FC<ISignUpProps> = (props: ISignUpProps) => {
   const { authToken, setAuthToken } = useContext(AuthContext);
-
+  const history = useHistory();
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const onSignIn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    async function signIn() {
+  const onSignUp = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    async function signUp() {
       try {
         setIsLoading(true);
         setError(false);
-        const url = `${baseUrl}/api/login`;
+        const url = `${baseUrl}/api/signup`;
         const response = await FetchWrapper.post<any, { token: string }>(url, {
           email: userName,
           password,
+          confirmPassword,
         });
-        console.log("Login successful!!", response);
-        setAuthToken?.(response?.token);
+        console.log("Signup successful!!", response);
+        history.push("/login");
       } catch (error) {
         setError(true);
         console.log("Something went wrong!!", error);
@@ -38,7 +40,7 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
     }
 
     event.preventDefault();
-    signIn();
+    signUp();
   };
 
   if (authToken) {
@@ -49,12 +51,12 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
     <div className="signin__section">
       <form action="#">
         <h1>
-          <Link to="/signup">Sign In</Link> / <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Sign In</Link> / <Link to="/signup">Sign Up</Link>
         </h1>
         {isLoading && <Spinner />}
         {error && (
           <div className="signin__section__error">
-            <span>Entered email/password is wrong.</span>
+            <span>Something went wrong.</span>
           </div>
         )}
         <section>
@@ -69,7 +71,6 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
             required
           />
         </section>
-
         <section>
           <label htmlFor="current-password">Password</label>
           <input
@@ -81,28 +82,27 @@ export const SignIn: React.FC<ISignInProps> = (props: ISignInProps) => {
             aria-describedby="password-constraints"
             required
           />
-          {/* <button
-          id="toggle-password"
-          type="button"
-          aria-label="Show password as plain text. Warning: this will display your password on the screen."
-        >
-          Show password
-        </button> */}
-          {/* <div id="password-constraints">
-          Eight or more characters, with at least one&nbsp;lowercase and one
-          uppercase letter.
-        </div> */}
         </section>
-
+        <section>
+          <label htmlFor="confirm-password">Password</label>
+          <input
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+            autoComplete="confirm-password"
+            aria-describedby="confirm-constraints"
+            required
+          />
+        </section>
         <Button
-          onButtonClick={onSignIn}
+          onButtonClick={onSignUp}
           buttonColor="primary"
           buttonStyle="btn--primary"
           buttonSize="btn--medium"
         >
-          Sign in
+          Sign Up
         </Button>
-        <Link to="/forget-password">Forget Password</Link>
       </form>
     </div>
   );

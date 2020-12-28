@@ -3,12 +3,13 @@
 }
 
 .btn {
-  padding: 8px 20px;
+  padding: 4px 12px;
   border-radius: 4px;
   outline: none;
   border: none;
   cursor: pointer;
   white-space: nowrap;
+  background-color: inherit;
 }
 
 .btn--primary {
@@ -78,7 +79,7 @@
 }
 
 .blue {
-  background-color: #0c0638;
+  background-color: var(--secondary-color-main);
   color: #fff;
   border: none;
 }
@@ -90,14 +91,14 @@
 }
 
 .primary {
-  background-color: #0c0638;
+  background-color: var(--primary-color-main);
   color: #fff;
   border: none;
 }
 
 .primary:hover {
   background-color: #fff;
-  color: #0c0638;
+  color: var(--primary-color-main);
   border: none;
 }
 
@@ -108,5 +109,5 @@
 }
 
 .green:hover {
-  background-color: #0c0638;
+  background-color: var(--primary-color-main);
 }

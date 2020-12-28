@@ -1,6 +1,7 @@
 :root {
   --background-color-main: #eae9f3;
-  --primary-color-main: #0c0638;
+  --primary-color-main: #0487e2;
+  --secondary-color-main: #1a78bb;
 }
 
 * {
@@ -18,17 +19,17 @@ input,
 select,
 textarea {
   width: 100%;
-  border: 1px solid var(--primary-color-main);
+  border: 1px solid var(--secondary-color-main);
   border-radius: 4px;
   resize: vertical;
   background: var(--background-color-main);
-  color: var(--primary-color-main);
+  color: var(--secondary-color-main);
   font-size: large;
 }
 
 textarea,
 input:focus {
-  border: 2px solid var(--primary-color-main);
+  border: 1px solid var(--secondary-color-main);
 }
 
 div#password-constraints {
@@ -50,7 +51,15 @@ h4,
 h5,
 h6,
 p,
-label {
+label,
+a {
+  color: var(--secondary-color-main);
+}
+
+a {
+  text-decoration: none;
+  padding-left: 8px;
+  padding-right: 8px;
   color: var(--primary-color-main);
 }
 
